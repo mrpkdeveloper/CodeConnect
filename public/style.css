@@ -1,0 +1,12 @@
+#video-grid {
+  position: relative;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+}
+video {
+  height: 200px;
+  width: 300px;
+  object-fit: cover;
+  transform: rotateY(180deg);
+}
