@@ -1,12 +1,18 @@
-const { Socket } = require("dgram");
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
+const { ExpressPeerServer } = require("peer");
+const peersever = ExpressPeerServer(server, {
+  debug: true,
+});
+const port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+
+app.use("/peerjs", peersever);
 
 app.get("/", (req, res) => {
   // res.render("room");
@@ -17,13 +23,13 @@ app.get("/:room", (req, res) => {
   res.render("room", { roomid: req.params.room });
 });
 
-//io.on => send info from server to client
 io.on("connection", (socket) => {
-  socket.on("join-room", (roomid) => {
+  //this below roomid server will receive from the client
+  socket.on("join-room", (roomid, userid) => {
     socket.join(roomid);
-    socket.to(roomid).broadcast.emit("user-connected");
-    // console.log("join the room");
+    //msg send to those client who have same roomid that new user is connected
+    socket.to(roomid).broadcast.emit("user-connected", userid);
   });
 });
 
-server.listen(3000, () => console.log("http://localhost:3000"));
+server.listen(port, () => console.log(`http://localhost:${port}`));
