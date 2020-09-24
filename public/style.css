@@ -1,12 +1,25 @@
-#videogrid {
-  position: relative;
-  border: 1px solid black;
+* {
+  background-color: black;
+}
+#video-grid {
+  border: solid white 2px;
+  /* display: grid; */
+  position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 35vh;
+  right: 2%;
+  overflow-y: auto;
+  /* left: 0px; */
+  /* grid-template-columns: repeat(auto-fill, 300px); */
+  /* grid-auto-rows: 300px; */
 }
 video {
-  height: 200px;
-  width: 300px;
+  border: solid black 2px;
+  width: 95%;
+  height: 30%;
   object-fit: cover;
+  margin: 10% 0%;
   transform: rotateY(180deg);
 }
