@@ -9,6 +9,13 @@ let myVideoStream;
 const myVideo = document.createElement("video");
 myVideo.muted = true;
 const peers = {};
+
+//receiving open when successfully connected to peer server
+myPeer.on("open", (id) => {
+  socket.emit("join-room", ROOM_ID, id);
+});
+
+//taking camera and audio permisions
 navigator.mediaDevices
   .getUserMedia({
     video: true,
@@ -17,46 +24,44 @@ navigator.mediaDevices
   .then((stream) => {
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
+
+    //on receiving call answer it
     myPeer.on("call", (call) => {
       call.answer(stream);
       const video = document.createElement("video");
+
       call.on("stream", (userVideoStream) => {
         addVideoStream(video, userVideoStream);
       });
     });
 
-    // socket.on("user-connected", (userId) => {
-    //   connectToNewUser(userId, stream);
-    // });
-
+    //receiving
     socket.on("user-connected", (userId) => {
       console.log("user connected.,..........");
+      //set timeout so that it can get stream otherwise it will request without actually having stream
       setTimeout(function () {
         connectToNewUser(userId, stream);
       }, 4000);
     });
 
-    // input value
-    let text = $("input");
-    // when press enter send message
-    $("html").keydown(function (e) {
-      if (e.which == 13 && text.val().length !== 0) {
-        socket.emit("message", text.val());
-        text.val("");
-      }
-    });
-    socket.on("createMessage", (message) => {
-      $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
-      scrollToBottom();
-    });
+    // // input value
+    // let text = $("input");
+    // // when press enter send message
+    // $("html").keydown(function (e) {
+    //   if (e.which == 13 && text.val().length !== 0) {
+    //     socket.emit("message", text.val());
+    //     text.val("");
+    //   }
+    // });
+    // socket.on("createMessage", (message) => {
+    //   $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
+    //   scrollToBottom();
+    // });
   });
 
+//receiving
 socket.on("user-disconnected", (userId) => {
   if (peers[userId]) peers[userId].close();
-});
-
-myPeer.on("open", (id) => {
-  socket.emit("join-room", ROOM_ID, id);
 });
 
 function connectToNewUser(userId, stream) {
@@ -80,10 +85,10 @@ function addVideoStream(video, stream) {
   videoGrid.append(video);
 }
 
-const scrollToBottom = () => {
-  var d = $(".main__chat_window");
-  d.scrollTop(d.prop("scrollHeight"));
-};
+// const scrollToBottom = () => {
+//   var d = $(".main__chat_window");
+//   d.scrollTop(d.prop("scrollHeight"));
+// };
 
 const muteUnmute = () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
