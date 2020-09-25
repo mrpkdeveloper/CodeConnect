@@ -21,29 +21,14 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script src="script.js" defer></script>
-    <style>
-        #video-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        video {
-            height: 300px;
-            width: 400px;
-            object-fit: cover;
-            padding: 8px;
-        }
-    </style>
 </head>
 
 <body>
     <div class="main">
-        <div class="main__left">
-            <div class="main__videos">
-                <div id="video-grid">
 
-                </div>
+
+        <div class="main__left">
+            <div class="main__area">
             </div>
             <div class="main__controls">
                 <div class="main__controls__block">
@@ -56,41 +41,18 @@
                         <span>Stop Video</span>
                     </div>
                 </div>
-                <div class="main__controls__block">
-                    <div class="main__controls__button">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Security</span>
-                    </div>
-                    <div class="main__controls__button">
-                        <i class="fas fa-user-friends"></i>
-                        <span>Participants</span>
-                    </div>
-                    <div class="main__controls__button">
-                        <i class="fas fa-comment-alt"></i>
-                        <span>Chat</span>
-                    </div>
-                </div>
-                <div class="main__controls__block">
-                    <div class="main__controls__button">
-                        <span class="leave_meeting">Leave Meeting</span>
-                    </div>
-                </div>
             </div>
         </div>
+
+
+
         <div class="main__right">
-            <div class="main__header">
-                <h6>Chat</h6>
-            </div>
-            <div class="main__chat_window">
-                <ul class="messages">
-
-                </ul>
-
-            </div>
-            <div class="main__message_container">
-                <input id="chat_message" type="text" placeholder="Type message here..." />
-            </div>
+            <div id="video-grid"></div>
         </div>
+
+
+
+
     </div>
 </body>
 

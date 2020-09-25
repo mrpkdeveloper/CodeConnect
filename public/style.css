@@ -3,6 +3,21 @@
   display: flex;
 }
 
+#video-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+video {
+  height: 200px;
+  width: 300px;
+  object-fit: cover;
+  padding: 8px;
+  transform: rotateY(180deg);
+}
+
 .main__left {
   flex: 0.8;
   display: flex;
@@ -13,7 +28,7 @@
   flex: 0.2;
 }
 
-.main__videos {
+.main__area {
   flex-grow: 1;
   background-color: black;
   display: flex;
@@ -24,18 +39,18 @@
 
 .main__controls {
   background-color: #1c1e20;
+  /* border: solid white 2px; */
+  display: flex;
+  justify-content: center;
+  color: #d2d2d2;
+  display: flex;
+  /* justify-content: space-between; */
+  padding: 5px;
 }
 
 .main__right {
   background-color: #242324;
   border-left: 1px solid #3d3d42;
-}
-
-.main__controls {
-  color: #d2d2d2;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
 }
 
 .main__controls__block {
