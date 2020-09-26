@@ -117,3 +117,9 @@ video {
 .stop {
   color: #cc3b33;
 }
+
+#roomid {
+  background-color: black;
+  color: white;
+  /* border: solid 1px white; */
+}
