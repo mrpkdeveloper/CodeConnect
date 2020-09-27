@@ -3,7 +3,7 @@ const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
   path: "/peerjs",
   host: "/",
-  port: "3030",
+  port: "443", //443 for production
 });
 let myVideoStream;
 const myVideodiv = document.createElement("div");
@@ -12,7 +12,6 @@ const myVideo = document.createElement("video");
 myVideo.id = "myvideo";
 myVideo.muted = true;
 const peers = {};
-
 //receiving open when successfully connected to peer server
 myPeer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id);
@@ -135,11 +134,11 @@ const setUnmuteButton = () => {
     <span>Unmute</span>
   `;
   let div = document.createElement("div");
-  // div.setAttribute("class", "centered");
+  div.setAttribute("class", "mutetext");
   div.id = "muteText";
   div.innerHTML = "Muted";
   document.querySelector("#myvideodiv").appendChild(div);
-  document.querySelector("#muteText").style.color = "red";
+  document.querySelector("#muteText").style.color = "black";
 
   document.querySelector(".main__mute_button").innerHTML = html;
 };
