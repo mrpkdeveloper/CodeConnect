@@ -6,7 +6,10 @@ const myPeer = new Peer(undefined, {
   port: "3030",
 });
 let myVideoStream;
+const myVideodiv = document.createElement("div");
+myVideodiv.id = "myvideodiv";
 const myVideo = document.createElement("video");
+myVideo.id = "myvideo";
 myVideo.muted = true;
 const peers = {};
 
@@ -23,15 +26,16 @@ navigator.mediaDevices
   })
   .then((stream) => {
     myVideoStream = stream;
-    addVideoStream(myVideo, stream);
+    addVideoStream(myVideodiv, myVideo, stream);
 
     //on receiving call answer it
     myPeer.on("call", (call) => {
       call.answer(stream);
+      const videodiv = document.createElement("div");
       const video = document.createElement("video");
 
       call.on("stream", (userVideoStream) => {
-        addVideoStream(video, userVideoStream);
+        addVideoStream(videodiv, video, userVideoStream);
       });
     });
 
@@ -66,9 +70,10 @@ socket.on("user-disconnected", (userId) => {
 
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
+  const videodiv = document.createElement("div");
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream);
+    addVideoStream(videodiv, video, userVideoStream);
   });
   call.on("close", () => {
     video.remove();
@@ -77,12 +82,13 @@ function connectToNewUser(userId, stream) {
   peers[userId] = call;
 }
 
-function addVideoStream(video, stream) {
+function addVideoStream(videodiv, video, stream) {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
     video.play();
   });
-  videoGrid.append(video);
+  videoGrid.append(videodiv);
+  videodiv.append(video);
 }
 
 // const scrollToBottom = () => {
@@ -118,6 +124,8 @@ const setMuteButton = () => {
     <i class="fas fa-microphone"></i>
     <span>Mute</span>
   `;
+  let div = document.querySelector("#muteText");
+  div.remove();
   document.querySelector(".main__mute_button").innerHTML = html;
 };
 
@@ -126,6 +134,13 @@ const setUnmuteButton = () => {
     <i class="unmute fas fa-microphone-slash"></i>
     <span>Unmute</span>
   `;
+  let div = document.createElement("div");
+  // div.setAttribute("class", "centered");
+  div.id = "muteText";
+  div.innerHTML = "Muted";
+  document.querySelector("#myvideodiv").appendChild(div);
+  document.querySelector("#muteText").style.color = "red";
+
   document.querySelector(".main__mute_button").innerHTML = html;
 };
 

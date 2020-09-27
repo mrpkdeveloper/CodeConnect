@@ -123,3 +123,11 @@ video {
   color: white;
   /* border: solid 1px white; */
 }
+
+.centered {
+  border: solid 2px white;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
