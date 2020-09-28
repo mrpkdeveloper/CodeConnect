@@ -44,7 +44,7 @@ navigator.mediaDevices
       //set timeout so that it can get stream otherwise it will request without actually having stream
       setTimeout(function () {
         connectToNewUser(userId, stream);
-      }, 8000);
+      }, 4000);
     });
 
     // // input value
