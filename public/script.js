@@ -1,10 +1,20 @@
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
-const myPeer = new Peer(undefined, {
-  path: "/peerjs",
-  host: "/",
-  port: "443", //443 for production
-});
+// const myPeer = new Peer(undefined, {
+//   path: "/peerjs",
+//   host: "/",
+//   port: "3030", //443 for production
+// });
+
+const myPeer = new Peer(
+  { key: "lwjd5qra8257b9", debug: 3, config: ice.iceServers },
+  {
+    path: "/peerjs",
+    host: "/",
+    port: "443", //443 for production
+  }
+);
+
 const myroomid = ROOM_ID;
 let myVideoStream;
 const myVideodiv = document.createElement("div");
