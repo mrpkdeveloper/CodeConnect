@@ -13,6 +13,8 @@ myVideo.id = "myvideo";
 myVideo.muted = true;
 const peers = {};
 var myid = 0;
+let editor = document.querySelector("#textarea");
+
 //receiving open when successfully connected to peer server
 myPeer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id);
@@ -66,6 +68,13 @@ navigator.mediaDevices
     //   $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
     //   scrollToBottom();
     // });
+    editor.addEventListener("keyup", (evt) => {
+      const text = editor.value;
+      socket.send(text);
+    });
+    socket.on("message", (data) => {
+      editor.value = data;
+    });
   });
 
 //receiving

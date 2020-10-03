@@ -133,3 +133,9 @@ video {
   font-size: 200%;
   font-weight: bolder;
 }
+
+#textarea {
+  resize: none;
+  background-color: #242324;
+  color: white;
+}
