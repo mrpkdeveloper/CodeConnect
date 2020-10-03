@@ -6,13 +6,23 @@ const videoGrid = document.getElementById("video-grid");
 //   port: "3030", //443 for production
 // });
 
+// if(!ice){
+//   ice = new $xirsys.ice('/webrtc');
+//   ice.on(ice.onICEList, function (evt){
+//       console.log('onICE ',evt);
+//       if(evt.type == ice.onICEList){
+//           create(ice.iceServers);
+//       }
+//   });
+// }
+
 const myPeer = new Peer(
-  { key: "lwjd5qra8257b9", debug: 3, config: ice.iceServers },
-  {
-    path: "/peerjs",
-    host: "/",
-    port: "443", //443 for production
-  }
+  { key: "lwjd5qra8257b9", debug: 3, config: ice.iceServers }
+  // {
+  //   path: "/peerjs",
+  //   host: "/",
+  //   port: "443", //443 for production
+  // }
 );
 
 const myroomid = ROOM_ID;
