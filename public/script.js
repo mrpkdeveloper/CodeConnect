@@ -3,18 +3,22 @@ const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
   path: "/peerjs",
   host: "/",
-  port: "443", //443 for production
+  port: "3030", //443 for production
 });
+const myroomid = ROOM_ID;
 let myVideoStream;
 const myVideodiv = document.createElement("div");
-myVideodiv.id = "myvideodiv";
 const myVideo = document.createElement("video");
 myVideo.id = "myvideo";
 myVideo.muted = true;
 const peers = {};
+var myid = 0;
 //receiving open when successfully connected to peer server
 myPeer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id);
+  console.log("my id is : " + id);
+  myVideodiv.id = `videodiv-${id}`;
+  myid = id;
 });
 
 //taking camera and audio permisions
@@ -27,12 +31,15 @@ navigator.mediaDevices
     myVideoStream = stream;
     addVideoStream(myVideodiv, myVideo, stream);
 
-    //on receiving call answer it
+    //if i receive a call  i have to answer it
     myPeer.on("call", (call) => {
       call.answer(stream);
-      const videodiv = document.createElement("div");
-      const video = document.createElement("video");
+      // console.log(call.peer);
 
+      //when i get the other user stream i will add that stream to my window
+      const videodiv = document.createElement("div");
+      videodiv.id = `videodiv-${call.peer}`;
+      const video = document.createElement("video");
       call.on("stream", (userVideoStream) => {
         addVideoStream(videodiv, video, userVideoStream);
       });
@@ -40,7 +47,6 @@ navigator.mediaDevices
 
     //receiving
     socket.on("user-connected", (userId) => {
-      console.log("user connected.,..........");
       //set timeout so that it can get stream otherwise it will request without actually having stream
       setTimeout(function () {
         connectToNewUser(userId, stream);
@@ -68,8 +74,14 @@ socket.on("user-disconnected", (userId) => {
 });
 
 function connectToNewUser(userId, stream) {
+  console.log(`connected to user id : ${userId}`);
+
+  //now i will call the userid and send my stream to him
   const call = myPeer.call(userId, stream);
+
+  //when i get the other user stream i will add that stream to my window
   const videodiv = document.createElement("div");
+  videodiv.id = `videodiv-${userId}`;
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
     addVideoStream(videodiv, video, userVideoStream);
@@ -137,7 +149,7 @@ const setUnmuteButton = () => {
   div.setAttribute("class", "mutetext");
   div.id = "muteText";
   div.innerHTML = "Muted";
-  document.querySelector("#myvideodiv").appendChild(div);
+  myVideodiv.appendChild(div);
   document.querySelector("#muteText").style.color = "black";
 
   document.querySelector(".main__mute_button").innerHTML = html;
