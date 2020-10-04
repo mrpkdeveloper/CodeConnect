@@ -11,6 +11,7 @@
 }
 
 video {
+  border: solid 1px white;
   height: 200px;
   width: 300px;
   object-fit: cover;

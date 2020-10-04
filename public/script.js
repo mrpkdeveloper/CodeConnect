@@ -27,8 +27,14 @@ const myPeer = new Peer(undefined, {
 });
 
 const myroomid = ROOM_ID;
+const myname = Name;
+console.log(myname);
 let myVideoStream;
 const myVideodiv = document.createElement("div");
+const mynamediv = document.createElement("div");
+mynamediv.innerHTML = myname;
+myVideodiv.append(mynamediv);
+mynamediv.style.color = "white";
 const myVideo = document.createElement("video");
 myVideo.id = "myvideo";
 myVideo.muted = true;
@@ -118,13 +124,19 @@ function connectToNewUser(userId, stream) {
     // Receive messages
     conn.on("data", function (data) {
       console.log("Received", data);
-      console.log(`${data.userid} user is muted`);
       let uservideodiv = document.querySelector(`#videodiv-${data.userid}`);
+      if (data.name) {
+        let namediv = document.createElement("div");
+        namediv.innerHTML = data.name;
+        namediv.style.color = "white";
+        uservideodiv.append(namediv);
+      }
+      console.log(`${data.userid} user is muted`);
       setvideomutedtext(uservideodiv, data.muted, data.userid);
     });
 
     // Send messages
-    conn.send({ userid: myid, muted: false });
+    conn.send({ userid: myid, name: myname, muted: false });
   });
 }
 
@@ -144,11 +156,17 @@ myPeer.on("connection", function (conn) {
       console.log("Received ", data);
       console.log(`${data.userid} user is muted`);
       let uservideodiv = document.querySelector(`#videodiv-${data.userid}`);
+      if (data.name) {
+        let namediv = document.createElement("div");
+        namediv.innerHTML = data.name;
+        namediv.style.color = "white";
+        uservideodiv.append(namediv);
+      }
       setvideomutedtext(uservideodiv, data.muted, data.userid);
     });
 
     // Send messages
-    conn.send({ userid: myid, muted: false });
+    conn.send({ userid: myid, name: myname, muted: false });
   });
 });
 
