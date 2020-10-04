@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
     // messages
     socket.on("message", (message) => {
       //send message to the same room
-      io.to(roomId).emit("message", message);
+      socket.to(roomId).broadcast.emit("message", message);
     });
 
     socket.on("disconnect", () => {

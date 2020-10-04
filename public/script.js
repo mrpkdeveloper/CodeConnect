@@ -3,7 +3,7 @@ const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
   path: "/peerjs",
   host: "/",
-  port: "443", //443 for production
+  port: "3030", //443 for production
   config: {
     iceServers: [
       {
@@ -89,15 +89,16 @@ navigator.mediaDevices
     //   $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
     //   scrollToBottom();
     // });
-    editor.addEventListener("keyup", (evt) => {
-      const text = editor.value;
-      socket.send(text);
-    });
-    socket.on("message", (data) => {
-      editor.value = data;
-    });
   });
 
+editor.addEventListener("keydown", (evt) => {
+  const text = editor.value;
+  // console.log(text);
+  socket.send(text);
+});
+socket.on("message", (data) => {
+  editor.value = data;
+});
 //receiving
 socket.on("user-disconnected", (userId) => {
   if (peers[userId]) peers[userId].close();
