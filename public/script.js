@@ -35,7 +35,7 @@ myVideo.muted = true;
 const peers = {};
 var myid = 0;
 let editor = document.querySelector("#textarea");
-
+var conn;
 //receiving open when successfully connected to peer server
 myPeer.on("open", (id) => {
   socket.emit("join-room", ROOM_ID, id);
@@ -75,20 +75,6 @@ navigator.mediaDevices
         connectToNewUser(userId, stream);
       }, 4000);
     });
-
-    // // input value
-    // let text = $("input");
-    // // when press enter send message
-    // $("html").keydown(function (e) {
-    //   if (e.which == 13 && text.val().length !== 0) {
-    //     socket.emit("message", text.val());
-    //     text.val("");
-    //   }
-    // });
-    // socket.on("createMessage", (message) => {
-    //   $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
-    //   scrollToBottom();
-    // });
   });
 
 editor.addEventListener("keydown", (evt) => {
@@ -104,6 +90,7 @@ socket.on("user-disconnected", (userId) => {
   if (peers[userId]) peers[userId].close();
 });
 
+//************************************* connect to new user function **********************************************/
 function connectToNewUser(userId, stream) {
   console.log(`connected to user id : ${userId}`);
 
@@ -122,7 +109,48 @@ function connectToNewUser(userId, stream) {
   });
 
   peers[userId] = call;
+
+  //creating connection between the peers to send data
+  //basically i am requesting the client to accept my connection
+  conn = myPeer.connect(userId);
+  //if he accepts create connection
+  conn.on("open", function () {
+    // Receive messages
+    conn.on("data", function (data) {
+      console.log("Received", data);
+      console.log(`${data.userid} user is muted`);
+      let uservideodiv = document.querySelector(`#videodiv-${data.userid}`);
+      setvideomutedtext(uservideodiv, data.muted, data.userid);
+    });
+
+    // Send messages
+    conn.send({ userid: myid, muted: false });
+  });
 }
+
+//*********************************** connect to new user function  (end)*****************************************/
+
+//receive connection (the client will recive connection and display on the console)
+var clientconn;
+myPeer.on("connection", function (conn) {
+  clientconn = conn;
+  // console.log(conn);
+  console.log("peer connection established");
+
+  conn.on("open", function () {
+    console.log("in open");
+    // Receive messages
+    conn.on("data", function (data) {
+      console.log("Received ", data);
+      console.log(`${data.userid} user is muted`);
+      let uservideodiv = document.querySelector(`#videodiv-${data.userid}`);
+      setvideomutedtext(uservideodiv, data.muted, data.userid);
+    });
+
+    // Send messages
+    conn.send({ userid: myid, muted: false });
+  });
+});
 
 function addVideoStream(videodiv, video, stream) {
   video.srcObject = stream;
@@ -166,9 +194,14 @@ const setMuteButton = () => {
     <i class="fas fa-microphone"></i>
     <span>Mute</span>
   `;
-  let div = document.querySelector("#muteText");
+  let div = document.querySelector(`#muteText-${myid}`);
   div.remove();
   document.querySelector(".main__mute_button").innerHTML = html;
+  if (conn) {
+    conn.send({ userid: myid, muted: false });
+  } else {
+    clientconn.send({ userid: myid, muted: false });
+  }
 };
 
 const setUnmuteButton = () => {
@@ -178,12 +211,18 @@ const setUnmuteButton = () => {
   `;
   let div = document.createElement("div");
   div.setAttribute("class", "mutetext");
-  div.id = "muteText";
-  div.innerHTML = "Muted";
+  div.id = `muteText-${myid}`;
+  div.innerHTML = `
+  <i class="unmute fas fa-microphone-slash"></i>
+`;
   myVideodiv.appendChild(div);
-  document.querySelector("#muteText").style.color = "black";
-
+  // document.querySelector(`#muteText-${myid}`).style.color = "black";
   document.querySelector(".main__mute_button").innerHTML = html;
+  if (conn) {
+    conn.send({ userid: myid, muted: true });
+  } else {
+    clientconn.send({ userid: myid, muted: true });
+  }
 };
 
 const setStopVideo = () => {
@@ -200,4 +239,20 @@ const setPlayVideo = () => {
     <span>Play Video</span>
   `;
   document.querySelector(".main__video_button").innerHTML = html;
+};
+
+const setvideomutedtext = (videodiv, muted, id) => {
+  if (muted) {
+    let div = document.createElement("div");
+    div.setAttribute("class", "mutetext");
+    div.id = `muteText-${id}`;
+    div.innerHTML = `
+    <i class="unmute fas fa-microphone-slash"></i>
+  `;
+    videodiv.appendChild(div);
+    // document.querySelector(`#muteText-${myid}`).style.color = "black";
+  } else {
+    let div = document.querySelector(`#muteText-${id}`);
+    div.remove();
+  }
 };
