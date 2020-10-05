@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: #000000de;
 }
 
 .heading {
@@ -131,4 +131,19 @@ body {
   display: inline;
   margin: 25px 0px;
   display: block;
+}
+
+.img {
+  border: solid 2px red;
+  margin: 3% 0%;
+  height: 90vh;
+}
+
+.footer {
+  /* border: solid white 1px; */
+  color: white;
+  height: 10vh;
+  padding-left: 40%;
+  padding-top: 1%;
+  background-color: black;
 }
