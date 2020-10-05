@@ -127,9 +127,8 @@ video {
 
 .mutetext {
   display: flex;
-  /* border: solid 2px white; */
-  position: relative;
-  width: auto;
+  /* border: solid 2px red; */
+  position: absolute;
   bottom: 50%;
   padding: 0% 40%;
   margin: 0% auto;
@@ -142,4 +141,11 @@ video {
   resize: none;
   background-color: #242324;
   color: white;
+}
+
+.videodiv {
+  /* border: solid red 2px; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }

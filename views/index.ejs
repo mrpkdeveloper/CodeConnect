@@ -6,27 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <script defer src="index.js"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <div>
-        <h1>Welcome to code connect</h1>
-    </div>
-    <div class="form">
-        <form action="/room" method="GET">
-            <div class="form-group">
-                <label for="formGroupExampleInput">Enter Your Name</label>
-                <input name="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name">
+    <div class="container">
+        <div class="heading">
+            <h2>Code-Connect</h2>
+        </div>
+        <div class="content">
+            <h1 class="content-heading">Pair Programming
+                for Interviews</h1>
+            <p class="content-para">CodeInterview lets you conduct hassle-free technical interviews in a real-time
+                shared coding
+                environment.</p>
+
+        </div>
+        <div class="button-div">
+            <button type="button" id="newbtn" class="btn btn-primary btn-lg button">Start New Meeting</button>
+            <button type="button" id="joinroom" class="btn btn-secondary btn-lg button">Join Existing room</button>
+        </div>
+
+        <div class="bg-modal-menu">
+            <div class="model-content-menu">
+                <div class="close-menu">+</div>
+                <div class="appdrawer-heading">New Meeting</div>
+                <form autocomplete="off" action="/room" method="GET">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput" style="color: white;">Enter Your Name</label>
+                        <input name="name" type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="Name">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">Start New Meeting</button>
+                </form>
             </div>
-            <button type="submit">Connect TO New Room</button>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">OR</label>
-                <label for="formGroupExampleInput2">Enter Room id</label>
-                <input name="roomid" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Room id">
+        </div>
+
+
+        <div class="bg-modal-menu-2">
+            <div class="model-content-menu">
+                <div class="close-menu-2">+</div>
+                <div class="appdrawer-heading">Existing Room</div>
+                <form autocomplete="off" action="/room" method="GET">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput" style="color: white;">Enter Your Name</label>
+                        <input name="name" type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput" style="color: white;">Enter Room ID</label>
+                        <input name="roomid" type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="Room ID">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">Join Room</button>
+                </form>
             </div>
-            <button type="submit">Join Room</button>
-        </form>
+        </div>
+
+
     </div>
 </body>
 

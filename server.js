@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 app.get("/room", (req, res) => {
   console.log(req.query);
-  if (req.query.roomid == "") {
+  if (!req.query.roomid) {
     console.log(true);
     let roomid = uuidV4();
     res.render("room", { roomId: roomid, name: req.query.name });

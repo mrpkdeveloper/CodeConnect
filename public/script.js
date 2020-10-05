@@ -31,6 +31,7 @@ const myname = Name;
 console.log(myname);
 let myVideoStream;
 const myVideodiv = document.createElement("div");
+myVideodiv.className = "videodiv";
 const mynamediv = document.createElement("div");
 mynamediv.innerHTML = myname;
 myVideodiv.append(mynamediv);
@@ -68,6 +69,7 @@ navigator.mediaDevices
       //when i get the other user stream i will add that stream to my window
       const videodiv = document.createElement("div");
       videodiv.id = `videodiv-${call.peer}`;
+      videodiv.className = "videodiv";
       const video = document.createElement("video");
       call.on("stream", (userVideoStream) => {
         addVideoStream(videodiv, video, userVideoStream);
@@ -106,6 +108,7 @@ function connectToNewUser(userId, stream) {
   //when i get the other user stream i will add that stream to my window
   const videodiv = document.createElement("div");
   videodiv.id = `videodiv-${userId}`;
+  videodiv.className = "videodiv";
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
     addVideoStream(videodiv, video, userVideoStream);
