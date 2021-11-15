@@ -4,28 +4,9 @@ const myPeer = new Peer(undefined, {
   path: "/peerjs",
   host: "/",
   port: "3030", //443 for production
-  // config: {
-  //   iceServers: [
-  //     {
-  //       urls: ["stun:bn-turn1.xirsys.com"],
-  //     },
-  //     {
-  //       username:
-  //         "CWAMDU_IwwRmty8iMrAactysEXO6eP4M85T3Xq01pSnH8FvidtyXGHp0nEg2L32WAAAAAF94vXxtcnBrZGV2ZWxvcGVy",
-  //       credential: "109ad15c-05a3-11eb-8f6a-0242ac140004",
-  //       urls: [
-  //         "turn:bn-turn1.xirsys.com:80?transport=udp",
-  //         "turn:bn-turn1.xirsys.com:3478?transport=udp",
-  //         "turn:bn-turn1.xirsys.com:80?transport=tcp",
-  //         "turn:bn-turn1.xirsys.com:3478?transport=tcp",
-  //         "turns:bn-turn1.xirsys.com:443?transport=tcp",
-  //         "turns:bn-turn1.xirsys.com:5349?transport=tcp",
-  //       ],
-  //     },
-  //   ],
-  // },
+  // config: process.env.CONFIG,
 });
-
+console.log(CONFIG);
 const myroomid = ROOM_ID;
 const myname = Name;
 console.log(myname);
@@ -41,7 +22,10 @@ myVideo.id = "myvideo";
 myVideo.muted = true;
 const peers = {};
 var myid = 0;
-let editor = document.querySelector("#textarea");
+let editor = document.querySelector("#codeArea");
+let input = document.querySelector("#input");
+let output = document.querySelector("#output");
+
 var conn;
 //receiving open when successfully connected to peer server
 myPeer.on("open", (id) => {
@@ -88,12 +72,36 @@ navigator.mediaDevices
 editor.addEventListener("keydown", (evt) => {
   const text = editor.value;
   // console.log(text);
-  socket.send(text);
+  socket.emit("code", text);
 });
-socket.on("message", (data) => {
+
+input.addEventListener("keydown", (evt) => {
+  const text = input.value;
+  // console.log(text);
+  console.log("i am from input ");
+  socket.emit("inpmsg", text);
+});
+
+// output.addEventListener("input", (evt) => {
+//   const text = output.value;
+//   // console.log(text);
+//   // console.log("hello i am from output");
+//   socket.emit("outmsg", text);
+// });
+
+//receiving
+socket.on("code", (data) => {
+  // console.log("rcvd msg in code");
   editor.value = data;
 });
-//receiving
+socket.on("inpmsg", (data) => {
+  // console.log("rcvd msg in input");
+  input.value = data;
+});
+socket.on("outmsg", (data) => {
+  // console.log("rcvd msg in output");
+  output.value = data;
+});
 socket.on("user-disconnected", (userId) => {
   if (peers[userId]) peers[userId].close();
 });

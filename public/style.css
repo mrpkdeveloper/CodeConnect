@@ -33,16 +33,110 @@ video {
   flex-grow: 1;
   background-color: black;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  padding: 40px;
+  padding: 1%;
+}
+
+#codeheader {
+  /* border: 1px solid white; */
+  resize: none;
+  background-color: #272727;
+  color: white;
+  height: 8%;
+  display: flex;
+  /* justify-content: center; */
+}
+
+#runbtndiv {
+  position: relative;
+  font-size: large;
+  font-weight: bold;
+  /* border: 2px solid white; */
+  left: 2%;
+  display: flex;
+  width: 10%;
+}
+
+#run-btn {
+  margin-top: 5%;
+  font-weight: bold;
+  height: 80%;
+  background-color: #e31d3b;
+  color: white;
+  border-radius: 40%;
+  border-style: none;
+  width: 80%;
+}
+
+.dropdown {
+  position: relative;
+  margin-top: 1%;
+  left: 3%;
+  background-color: #272727;
+  color: white;
+  width: 30%;
+  border: 0px;
+  outline: 0px;
+}
+
+#madelove {
+  position: relative;
+  font-size: large;
+  font-weight: bold;
+  /* border: 2px solid white; */
+  left: 30%;
+  padding: 1%;
+}
+
+#codeArea {
+  resize: none;
+  background-color: #242324;
+  color: white;
+  border: 0px;
+  outline: 0px;
+}
+
+#iodiv {
+  /* border: 1px solid white; */
+  resize: none;
+  background-color: black;
+  color: white;
+  height: 95%;
+  width: 40%;
+  margin-left: 1%;
+}
+
+#inputdiv {
+  background-color: #242324;
+  color: white;
+  /* border: 1px solid white; */
+  height: 35%;
+  width: 100%;
+}
+
+#input,
+#output {
+  background-color: #242324;
+  color: white;
+  border: 0px;
+  outline: 0px;
+}
+
+#outputdiv {
+  background-color: #242324;
+  color: white;
+  /* border: 1px solid white; */
+  height: 60%;
+  margin-top: 5%;
+  width: 100%;
 }
 
 .main__controls {
   background-color: #1c1e20;
   /* border: solid white 2px; */
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   color: #d2d2d2;
   display: flex;
   /* justify-content: space-between; */
@@ -55,6 +149,9 @@ video {
 }
 
 .main__controls__block {
+  position: relative;
+  left: 10%;
+  /* border: 1px solid white; */
   display: flex;
 }
 
@@ -120,7 +217,7 @@ video {
 }
 
 #roomid {
-  background-color: black;
+  background-color: #1c1e20;
   color: white;
   /* border: solid 1px white; */
 }
@@ -135,12 +232,6 @@ video {
   font-size: 200%;
   font-weight: bolder;
   color: red;
-}
-
-#textarea {
-  resize: none;
-  background-color: #242324;
-  color: white;
 }
 
 .videodiv {

@@ -7,6 +7,8 @@ const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
 const { v4: uuidV4 } = require("uuid");
+require("dotenv").config();
+// console.log(process.env);
 
 app.use("/peerjs", peerServer);
 
@@ -45,9 +47,21 @@ io.on("connection", (socket) => {
     socket.to(roomId).broadcast.emit("user-connected", userId);
 
     // messages
-    socket.on("message", (message) => {
+    socket.on("code", (message) => {
       //send message to the same room
-      socket.to(roomId).broadcast.emit("message", message);
+      // console.log("msg come to sever via msg");
+      socket.to(roomId).broadcast.emit("code", message);
+    });
+
+    socket.on("inpmsg", (message) => {
+      //send message to the same room
+      // console.log("msg come to sever via inpmsg");
+      socket.to(roomId).broadcast.emit("inpmsg", message);
+    });
+    socket.on("outmsg", (message) => {
+      //send message to the same room
+      // console.log("msg come to sever via outmsg");
+      socket.to(roomId).broadcast.emit("outmsg", message);
     });
 
     socket.on("disconnect", () => {
@@ -57,4 +71,3 @@ io.on("connection", (socket) => {
 });
 
 server.listen(process.env.PORT || 3030);
- 
