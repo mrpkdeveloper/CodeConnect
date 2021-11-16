@@ -70,4 +70,5 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(process.env.PORT || 3030);
+// 443 for production
+server.listen(process.env.PORT || 443);

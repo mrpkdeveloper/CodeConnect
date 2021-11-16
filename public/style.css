@@ -98,6 +98,11 @@ video {
   width: 50%;
 }
 
+.CodeMirror {
+  font-family: Arial, monospace;
+  font-size: 20px;
+}
+
 #iodiv {
   /* border: 1px solid white; */
   resize: none;
