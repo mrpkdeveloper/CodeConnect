@@ -6,7 +6,7 @@ const myPeer = new Peer(undefined, {
   port: "3030", //443 for production
   // config: process.env.CONFIG,
 });
-console.log(CONFIG);
+// console.log(CONFIG);
 const myroomid = ROOM_ID;
 const myname = Name;
 console.log(myname);
@@ -22,7 +22,17 @@ myVideo.id = "myvideo";
 myVideo.muted = true;
 const peers = {};
 var myid = 0;
-let editor = document.querySelector("#codeArea");
+// let editor = document.querySelector("#code");
+var codeArea = CodeMirror.fromTextArea(document.getElementById("code"), {
+  lineNumbers: true,
+  mode: "text/x-perl",
+  theme: "abbott",
+  // theme: "ayu-dark",
+  // theme: "3024-night",
+  lineWrapping: true,
+});
+// codeArea.setOption("theme", "cobalt");
+codeArea.setSize("95%", "94%");
 let input = document.querySelector("#input");
 let output = document.querySelector("#output");
 
@@ -69,9 +79,9 @@ navigator.mediaDevices
     });
   });
 
-editor.addEventListener("keydown", (evt) => {
-  const text = editor.value;
-  // console.log(text);
+codeArea.on("keydown", (cm) => {
+  const text = cm.getValue();
+  console.log(text);
   socket.emit("code", text);
 });
 
@@ -82,17 +92,10 @@ input.addEventListener("keydown", (evt) => {
   socket.emit("inpmsg", text);
 });
 
-// output.addEventListener("input", (evt) => {
-//   const text = output.value;
-//   // console.log(text);
-//   // console.log("hello i am from output");
-//   socket.emit("outmsg", text);
-// });
-
 //receiving
 socket.on("code", (data) => {
   // console.log("rcvd msg in code");
-  editor.value = data;
+  codeArea.getDoc().setValue(data);
 });
 socket.on("inpmsg", (data) => {
   // console.log("rcvd msg in input");

@@ -32,6 +32,18 @@
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script src="../node_modules/socket.io-client/dist/socket.io.js"></script>
     <script src="secret.js" defer></script>
+
+    <!-- libraries for codemirror -->
+    <script language="javascript" type="text/javascript" src="https://codemirror.net/lib/codemirror.js"></script>
+    <script language="javascript" type="text/javascript" src="https://codemirror.net/mode/perl/perl.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://codemirror.net/lib/codemirror.css">
+    </link>
+    <link rel="stylesheet" type="text/css" href="https://codemirror.net/theme/abbott.css">
+    </link>
+
+
+    <!-- my own scripts -->
     <script src="script.js" defer></script>
     <script src="editorscript.js" defer></script>
 </head>
@@ -64,20 +76,18 @@
 
             </div>
             <div class="main__area">
-                <textarea style="color: white" name="textarea" id="codeArea" cols="80" rows="18"
-                    placeholder="Enter Code here..">
- import java.util.*;                  
- public class Main {
-
+                <textarea id="code" name="code" cols="80" rows="18">
+import java.util.*;                  
+public class Main {
+                                       
     public static void main(String args[]) {
         // write your code here
         System.out.println("Hello World!");
-        
-        }
-
- }
+                                               
+    }
+                                       
+}
                 </textarea>
-
                 <div id="iodiv">
                     <div id="inputdiv">
                         <h6>Input</h6>

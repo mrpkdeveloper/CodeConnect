@@ -1,4 +1,5 @@
 // API_KEY = got this from secret.js // Get yours for free at https://judge0.com/ce or https://judge0.com/extra-ce
+
 var language_to_id = {
   Bash: 46,
   C: 50,
@@ -74,6 +75,8 @@ function run() {
   //   if (encodedExpectedOutput === "") {
   //     encodedExpectedOutput = null; // Assume that user does not want to use expected output if it is empty.
   //   }
+  let code = codeArea.getValue();
+  console.log(code);
 
   $.ajax({
     url: "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&wait=false",
@@ -85,7 +88,7 @@ function run() {
     },
     data: JSON.stringify({
       language_id: language_to_id[$("#select-language").val()],
-      source_code: encode($("#codeArea").val()),
+      source_code: encode(code),
       stdin: encode($("#input").val()),
       expected_output: encodedExpectedOutput,
       redirect_stderr_to_stdout: true,

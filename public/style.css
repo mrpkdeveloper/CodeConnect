@@ -89,12 +89,13 @@ video {
   padding: 1%;
 }
 
-#codeArea {
+#code {
   resize: none;
-  background-color: #242324;
   color: white;
   border: 0px;
   outline: 0px;
+  height: 100px;
+  width: 50%;
 }
 
 #iodiv {
