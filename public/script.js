@@ -4,24 +4,24 @@ const myPeer = new Peer(undefined, {
   path: "/peerjs",
   host: "/",
   port: "443", //443 for production
-  config: {
-    iceServers: [
-      { urls: ["stun:bn-turn1.xirsys.com"] },
-      {
-        username:
-          "CWAMDU_IwwRmty8iMrAactysEXO6eP4M85T3Xq01pSnH8FvidtyXGHp0nEg2L32WAAAAAF94vXxtcnBrZGV2ZWxvcGVy",
-        credential: "109ad15c-05a3-11eb-8f6a-0242ac140004",
-        urls: [
-          "turn:bn-turn1.xirsys.com:80?transport=udp",
-          "turn:bn-turn1.xirsys.com:3478?transport=udp",
-          "turn:bn-turn1.xirsys.com:80?transport=tcp",
-          "turn:bn-turn1.xirsys.com:3478?transport=tcp",
-          "turns:bn-turn1.xirsys.com:443?transport=tcp",
-          "turns:bn-turn1.xirsys.com:5349?transport=tcp",
-        ],
-      },
-    ],
-  },
+  // config: {
+  //   iceServers: [
+  //     { urls: ["stun:bn-turn1.xirsys.com"] },
+  //     {
+  //       username:
+  //         "CWAMDU_IwwRmty8iMrAactysEXO6eP4M85T3Xq01pSnH8FvidtyXGHp0nEg2L32WAAAAAF94vXxtcnBrZGV2ZWxvcGVy",
+  //       credential: "109ad15c-05a3-11eb-8f6a-0242ac140004",
+  //       urls: [
+  //         "turn:bn-turn1.xirsys.com:80?transport=udp",
+  //         "turn:bn-turn1.xirsys.com:3478?transport=udp",
+  //         "turn:bn-turn1.xirsys.com:80?transport=tcp",
+  //         "turn:bn-turn1.xirsys.com:3478?transport=tcp",
+  //         "turns:bn-turn1.xirsys.com:443?transport=tcp",
+  //         "turns:bn-turn1.xirsys.com:5349?transport=tcp",
+  //       ],
+  //     },
+  //   ],
+  // },
 });
 // console.log(CONFIG);
 const myroomid = ROOM_ID;
