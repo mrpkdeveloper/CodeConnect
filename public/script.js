@@ -1,11 +1,10 @@
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
-// const myPeer = new Peer(undefined, {
-//   path: "/peerjs",
-//   host: "/",
-//   port: "443", //443 for production
-// });
-const myPeer = new Peer();
+const myPeer = new Peer(undefined, {
+  path: "/peerjs",
+  host: "/",
+  port: "443",
+});
 const myroomid = ROOM_ID;
 const myname = Name;
 console.log(myname);
