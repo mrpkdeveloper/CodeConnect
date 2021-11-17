@@ -1,7 +1,7 @@
 let new_btn = document.getElementById("newbtn");
 let room_btn = document.getElementById("joinroom");
 new_btn.addEventListener("click", function () {
-  console.log("hello");
+  // console.log("hello");
   document.querySelector(".bg-modal-menu").style.display = "flex";
 });
 
