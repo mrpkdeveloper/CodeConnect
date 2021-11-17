@@ -1,0 +1,149 @@
+body {
+  background-color: #000000de;
+}
+
+.heading {
+  /* border: solid 1px white; */
+  margin-top: 1%;
+  color: white;
+  display: flex;
+  /* justify-content: center; */
+}
+.content {
+  /* border: solid 2px white; */
+  height: 40vh;
+  margin: 2% auto;
+  width: 60%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+.content-heading {
+  /* border: solid 2px white; */
+  font-size: 3rem;
+  text-align: center;
+}
+
+.content-para {
+  /* border: solid 2px white; */
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.button-div {
+  margin-top: 1%;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.button {
+  margin: 0% 1%;
+}
+
+.bg-modal-menu,
+.bg-modal-menu-2 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  display: none;
+  overflow: hidden;
+}
+
+.model-content {
+  margin: auto;
+  width: 800px;
+  height: 490px;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+}
+.close-menu,
+.close-menu-2 {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 40px;
+  font-weight: bolder;
+  transform: rotate(45deg);
+  cursor: pointer;
+  z-index: 10;
+  color: #f99797;
+}
+
+/* .container {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+} */
+
+/* properties for menu  */
+.model-content-menu {
+  display: flex;
+  margin: auto;
+  width: 600px;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  animation-name: appdrawer;
+  animation-duration: 0.4s;
+  animation-iteration-count: 1;
+  /* the below property for chanfes to be remain there  */
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  /* overflow-y: auto; */
+  /* min-height: 0px; */
+}
+
+@keyframes appdrawer {
+  from {
+    /* height: 0px; */
+    /* bottom: 0; */
+    transform: translateY(200px);
+  }
+  to {
+    /* height: 400px; */
+    /* top: 0; */
+    transform: translateY(-35px);
+  }
+}
+.appdrawer-heading {
+  position: absolute;
+  top: 0;
+  font-size: 35px;
+  font-weight: bolder;
+  z-index: 10;
+  color: white;
+  display: inline;
+  margin: 25px 0px;
+  display: block;
+}
+
+.img {
+  border: solid 2px red;
+  margin: 3% 0%;
+  height: 90vh;
+}
+
+.footer {
+  /* border: solid white 1px; */
+  color: white;
+  height: 10vh;
+  padding-left: 40%;
+  padding-top: 1%;
+  background-color: black;
+}

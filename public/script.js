@@ -7,7 +7,6 @@ const myPeer = new Peer(undefined, {
 });
 const myroomid = ROOM_ID;
 const myname = Name;
-console.log(myname);
 let myVideoStream;
 const myVideodiv = document.createElement("div");
 myVideodiv.className = "videodiv";
