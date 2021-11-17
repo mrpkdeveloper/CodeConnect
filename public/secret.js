@@ -4,8 +4,8 @@ const CONFIG = {
     { urls: ["stun:bn-turn1.xirsys.com"] },
     {
       username:
-        "CWAMDU_IwwRmty8iMrAactysEXO6eP4M85T3Xq01pSnH8FvidtyXGHp0nEg2L32WAAAAAF94vXxtcnBrZGV2ZWxvcGVy",
-      credential: "109ad15c-05a3-11eb-8f6a-0242ac140004",
+        "OqZByxJ5ZrKFXYdws9gizGoLdQyhYg5kQh4mMTFKi2TVFY-5kFogetZAu6Ho1369AAAAAGGT_OltcnBrZGV2ZWxvcGVy",
+      credential: "be98eaf8-470d-11ec-ac21-0242ac140004",
       urls: [
         "turn:bn-turn1.xirsys.com:80?transport=udp",
         "turn:bn-turn1.xirsys.com:3478?transport=udp",
@@ -16,4 +16,4 @@ const CONFIG = {
       ],
     },
   ],
-};
+}
