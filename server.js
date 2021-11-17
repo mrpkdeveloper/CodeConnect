@@ -32,7 +32,6 @@ app.get("/room", (req, res) => {
   } else {
     res.render("room", { roomId: req.query.roomid, name: req.query.name });
   }
-  console.log("in /room");
 });
 
 // app.get("/:room", (req, res) => {
