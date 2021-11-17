@@ -32,7 +32,7 @@ app.get("/room", (req, res) => {
   } else {
     res.render("room", { roomId: req.query.roomid, name: req.query.name });
   }
-  console.log("im /room");
+  console.log("in /room");
 });
 
 // app.get("/:room", (req, res) => {
@@ -70,5 +70,4 @@ io.on("connection", (socket) => {
   });
 });
 
-// 443 for production
 server.listen(process.env.PORT || 3030);
