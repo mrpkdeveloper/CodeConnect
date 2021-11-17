@@ -1,10 +1,9 @@
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
-  host: "/", //Heroku domain
-  port: "443",
   path: "/peerjs",
-  secure: true,
+  host: "/",
+  port: "443",
 });
 const myroomid = ROOM_ID;
 const myname = Name;

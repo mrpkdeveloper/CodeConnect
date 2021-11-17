@@ -7,17 +7,11 @@ const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
 const { v4: uuidV4 } = require("uuid");
-require("dotenv").config();
-// console.log(process.env);
 
 app.use("/peerjs", peerServer);
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-
-// app.get("/a", (req, res) => {
-//   res.redirect(`/${uuidV4()}`);
-// });
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -33,12 +27,6 @@ app.get("/room", (req, res) => {
     res.render("room", { roomId: req.query.roomid, name: req.query.name });
   }
 });
-
-// app.get("/:room", (req, res) => {
-//   console.log(req.params);
-//   res.render("room", { roomId: req.params.room });
-//   console.log("im /:room");
-// });
 
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
