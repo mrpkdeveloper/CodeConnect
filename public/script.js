@@ -1,7 +1,7 @@
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
-  host: "codeconnect1.herokuapp.com/", //Heroku domain
+  host: "/", //Heroku domain
   port: "443",
   path: "/peerjs",
   secure: true,
