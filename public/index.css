@@ -13,7 +13,7 @@ body {
 .content {
   /* border: solid 2px white; */
   height: 40vh;
-  margin: 2% auto;
+  margin: 4% auto;
   width: 60%;
   color: white;
   display: flex;
@@ -136,7 +136,7 @@ body {
 
 .img {
   border: solid 2px red;
-  margin: 3% 0%;
+  margin: 4% 0%;
   height: 85vh;
 }
 
