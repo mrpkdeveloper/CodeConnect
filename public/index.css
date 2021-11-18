@@ -7,7 +7,8 @@ body {
   margin-top: 1%;
   color: white;
   display: flex;
-  /* justify-content: center; */
+  width: 20%;
+  justify-content: center;
 }
 .content {
   /* border: solid 2px white; */
@@ -136,7 +137,7 @@ body {
 .img {
   border: solid 2px red;
   margin: 3% 0%;
-  height: 90vh;
+  height: 85vh;
 }
 
 .footer {
