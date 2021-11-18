@@ -1,4 +1,4 @@
-const API_KEY = "9acdf58bb3msh9fcea96d8a284b7p185cdbjsna8179ddcc1aa"; // Get yours for free at https://judge0.com/ce or https://judge0.com/extra-ce
+// const API_KEY =  // Get yours for free at https://judge0.com/ce or https://judge0.com/extra-ce
 
 var language_to_id = {
   Bash: 46,
