@@ -10,9 +10,9 @@ body {
   width: 20%;
   justify-content: center;
 }
+
 .content {
   /* border: solid 2px white; */
-  height: 40vh;
   margin: 4% auto;
   width: 60%;
   color: white;
@@ -21,6 +21,7 @@ body {
   /* justify-content: center; */
   align-items: center;
 }
+
 .content-heading {
   /* border: solid 2px white; */
   font-size: 3rem;
@@ -40,6 +41,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
 .button {
   margin: 0% 1%;
 }
@@ -67,6 +69,7 @@ body {
   position: relative;
   z-index: 2;
 }
+
 .close-menu,
 .close-menu-2 {
   position: absolute;
@@ -116,12 +119,14 @@ body {
     /* bottom: 0; */
     transform: translateY(200px);
   }
+
   to {
     /* height: 400px; */
     /* top: 0; */
     transform: translateY(-35px);
   }
 }
+
 .appdrawer-heading {
   position: absolute;
   top: 0;
@@ -143,8 +148,7 @@ body {
 .footer {
   /* border: solid white 1px; */
   color: white;
-  height: 10vh;
-  padding-left: 40%;
-  padding-top: 1%;
+  height: 100px;
+  padding-top: 20px;
   background-color: black;
 }
