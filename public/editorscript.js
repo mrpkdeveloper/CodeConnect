@@ -1,4 +1,4 @@
-// const API_KEY =  // Get yours for free at https://judge0.com/ce or https://judge0.com/extra-ce
+const API_KEY = "9c1fd67c23msh5095828cf85cc8ap1b59e3jsnef8aaf8eed6f"; // Get yours for free at https://judge0.com/ce or https://judge0.com/extra-ce
 
 var language_to_id = {
   Bash: 46,
@@ -39,6 +39,7 @@ function check(token) {
     },
     success: function (data, textStatus, jqXHR) {
       if ([1, 2].includes(data["status"]["id"])) {
+        console.log("Hello i am here u are where --------------------");
         $("#output").val(
           $("#output").val() + "\nℹ️ Status: " + data["status"]["description"]
         );
@@ -95,9 +96,10 @@ function run() {
     }),
     success: function (data, textStatus, jqXHR) {
       $("#output").val($("#output").val() + "\n🎉 Submission created.");
-      setTimeout(function () {
-        check(data["token"]);
-      }, 2000);
+      // setTimeout(function () {
+      //   check(data["token"]);
+      // }, 2000);
+      check(data["token"]);
     },
     error: errorHandler,
   });
