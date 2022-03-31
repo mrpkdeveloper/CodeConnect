@@ -31,28 +31,28 @@ app.get("/room", (req, res) => {
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
     socket.join(roomId);
-    socket.to(roomId).broadcast.emit("user-connected", userId);
+    socket.to(roomId).emit("user-connected", userId);
 
     // messages
     socket.on("code", (message) => {
       //send message to the same room
       // console.log("msg come to sever via msg");
-      socket.to(roomId).broadcast.emit("code", message);
+      socket.to(roomId).emit("code", message);
     });
 
     socket.on("inpmsg", (message) => {
       //send message to the same room
       // console.log("msg come to sever via inpmsg");
-      socket.to(roomId).broadcast.emit("inpmsg", message);
+      socket.to(roomId).emit("inpmsg", message);
     });
     socket.on("outmsg", (message) => {
       //send message to the same room
       // console.log("msg come to sever via outmsg");
-      socket.to(roomId).broadcast.emit("outmsg", message);
+      socket.to(roomId).emit("outmsg", message);
     });
 
     socket.on("disconnect", () => {
-      socket.to(roomId).broadcast.emit("user-disconnected", userId);
+      socket.to(roomId).emit("user-disconnected", userId);
     });
   });
 });
