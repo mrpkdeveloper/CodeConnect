@@ -1,4 +1,4 @@
-const API_KEY = "9c1fd67c23msh5095828cf85cc8ap1b59e3jsnef8aaf8eed6f"; // Get yours for free at https://judge0.com/ce or https://judge0.com/extra-ce
+const API_KEY = ""; // Get yours for free at https://judge0.com/ce or https://judge0.com/extra-ce
 
 var language_to_id = {
   Bash: 46,
@@ -40,21 +40,13 @@ function check(token) {
     success: function (data, textStatus, jqXHR) {
       if ([1, 2].includes(data["status"]["id"])) {
         console.log("Hello i am here u are where --------------------");
-        $("#output").val(
-          $("#output").val() + "\nℹ️ Status: " + data["status"]["description"]
-        );
+        $("#output").val($("#output").val() + "\nℹ️ Status: " + data["status"]["description"]);
         setTimeout(function () {
           check(token);
         }, 1000);
       } else {
-        var output = [decode(data["compile_output"]), decode(data["stdout"])]
-          .join("\n")
-          .trim();
-        $("#output").val(
-          `${data["status"]["id"] != "3" ? "🔴" : "🟢"} ${
-            data["status"]["description"]
-          }\n${output}`
-        );
+        var output = [decode(data["compile_output"]), decode(data["stdout"])].join("\n").trim();
+        $("#output").val(`${data["status"]["id"] != "3" ? "🔴" : "🟢"} ${data["status"]["description"]}\n${output}`);
         $("#run-btn").prop("disabled", false);
       }
     },
@@ -121,9 +113,7 @@ $("textarea").keydown(function (e) {
     var end = this.selectionEnd;
 
     var append = "    ";
-    $(this).val(
-      $(this).val().substring(0, start) + append + $(this).val().substring(end)
-    );
+    $(this).val($(this).val().substring(0, start) + append + $(this).val().substring(end));
 
     this.selectionStart = this.selectionEnd = start + append.length;
   }
